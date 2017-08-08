@@ -1,0 +1,14 @@
+服务员：客人到来信号 ctrl+c SIGINT
+        点菜，发送信号给厨师做菜  SIGUSR1
+		端菜，接收厨师发送的端菜信号  SIGUSR2
+		客人吃完饭，买单信号  ctrl+z  SIGTSTP
+		下班时间到了，通知服务员下班  ctrl+\ SIGQUIT
+		通知厨师下班  SIGALRM
+		处理 SIGCHLD
+
+厨师：忽略SIGINT，SIGQUIT，SIGTSTP 
+	  接收做菜信号 SIGUSR1
+	  发送端菜信号 SIGUSR2
+	  接收下班信号 SIGALRM
+
+//可以用父进程模仿服务员，子进程模仿厨师
